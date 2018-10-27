@@ -26,13 +26,16 @@ def validate():
         
     if ' ' in user_name:
         user_name_error = 'Username cannot contain a space.'
+        user_name = ''
 
     if len(password) < 3 or len(password) > 20:
         password_error = 'Password must be between 3-20 characters.'
         password = ''
 
     if ' ' in password:
-        user_name_error = 'Username cannot contain a space.'
+        password_error = 'Password cannot contain a space.'
+        password = ''
+        verify_password = ''
     
     if verify_password != password:
         verify_password_error = 'Password does not match.'
@@ -55,7 +58,7 @@ def validate():
 
 @app.route('/validated-user', methods=['POST'])
 def validated():
-    user_name = request.form['user-name']
+    user_name = request.form['user-name-input']
 
     return render_template('validated-user.html', user_name=user_name)
 

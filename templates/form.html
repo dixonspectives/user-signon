@@ -2,10 +2,9 @@
 
 {% block content %}
 
-  <form action='/validated-user' method='POST'>
+  <form method='POST'>
         <label> User Name
           <input name="user-name-input" type='text' value={{user_name}} >
-          <input type="hidden" name="user-name" value={{user_name}} >
         </label>
         <p class="error">{{user_name_error}}</p>
         <label>Password
