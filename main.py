@@ -51,14 +51,15 @@ def validate():
         email_error = 'This is not a valid email format.'
 
     if not user_name_error and not password_error and not verify_password_error and not email_error:
-        return redirect('/validated-user')
+        
+        return redirect('/validated-user?user_name={0}'.format(user_name))
 
     else:
         return render_template('form.html', user_name=user_name, user_name_error=user_name_error, password=password, password_error=password_error, verify_password=verify_password, verify_password_error=verify_password_error, email=email, email_error=email_error)
 
-@app.route('/validated-user', methods=['POST'])
+@app.route('/validated-user')
 def validated():
-    user_name = request.form['user-name-input']
+    user_name = request.args.get('user_name')
 
     return render_template('validated-user.html', user_name=user_name)
 
